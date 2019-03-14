@@ -2,6 +2,8 @@ package bookazon.tdpii.fiuba.com.bookazon.view;
 
 
 import android.content.Context;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,12 +38,36 @@ public class BookAdapter extends ArrayAdapter<Book> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.book_view, parent, false);
         }
 
-        TextView titleView = (TextView) convertView.findViewById(R.id.bookTitle);
+        TextView titleView = (TextView) convertView.findViewById(R.id.title);
         titleView.setText(book.title);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.bookImage);
-
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.thumbnail);
         Picasso.get().load(book.coverLink).into(imageView);
+
+
+        TextView authorView = (TextView) convertView.findViewById(R.id.author);
+        authorView.setText(book.authors.toString());
+
+        TextView categoryView = (TextView) convertView.findViewById(R.id.category);
+        categoryView.setText(book.categories.toString());
+
+        TextView labelsView = (TextView) convertView.findViewById(R.id.labels);
+        labelsView.setText(book.labels.toString());
+
+        TextView descriptionView = (TextView) convertView.findViewById(R.id.description);
+        descriptionView.setText(book.description);
+
+        ImageView downloadImageView = (ImageView) convertView.findViewById(R.id.download);
+        if(!book.pdf && !book.epub){
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            downloadImageView.setColorFilter(filter);
+        }
+
+
+
+
 
         // Lookup view for data population
 

@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/constraintLayoutTitle"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:orientation="vertical">
 
 
@@ -26,8 +26,6 @@
     <include
         layout="@layout/books_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@+id/constraintLayoutTitle"
-        app:layout_anchorGravity="left|bottom" />
+        android:layout_height="wrap_content" />
 
 </android.support.design.widget.CoordinatorLayout>
