@@ -16,4 +16,27 @@ public class Book implements Serializable {
     public Boolean epub;
     public Boolean pdf;
 
+
+    private String concatenateListOfString(List<String> list){
+        String result = "";
+
+        for( int i = 0; i <= list.size() - 1; i++){
+            result = result.concat(list.get(i) + ", ");
+        }
+
+        return result.substring(0, result.length()-2);
+    }
+
+    public String getAuthors(){
+
+       return concatenateListOfString(authors);
+
+    }
+
+    public String getLabels(){
+
+        return concatenateListOfString(labels);
+    }
+
+
 }

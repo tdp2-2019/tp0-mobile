@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -53,6 +54,9 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
         });*/
 
         setupInitials();
+
+
+
     }
 
     private void setupInitials() {
@@ -83,6 +87,13 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
         if (!this.bookArray.isEmpty()) {
             bookList.setSelection(0);
         }
+    }
+
+    private void displayEmptyResults() {
+        final ImageView emptyResultView = (ImageView) findViewById(R.id.empty_results);
+
+        emptyResultView.setVisibility(View.VISIBLE);
+
     }
 
 
@@ -127,6 +138,10 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
 
         ProgressBar loadingView = (ProgressBar) findViewById(R.id.loading);
         loadingView.setVisibility(View.INVISIBLE);
+
+        if(bookArray.isEmpty()){
+            displayEmptyResults();
+        }
         displayBooks();
     }
 
