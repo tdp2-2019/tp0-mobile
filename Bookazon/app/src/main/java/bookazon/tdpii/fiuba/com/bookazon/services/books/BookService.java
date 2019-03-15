@@ -1,5 +1,6 @@
 package bookazon.tdpii.fiuba.com.bookazon.services.books;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -15,8 +16,9 @@ public class BookService {
 
     private CoreAPI coreAPI;
 
-    public BookService() {
-        coreAPI = ApiClient.getInstance().getCoreAPI();
+    public BookService(Context applicationContext) {
+        coreAPI = ApiClient.getInstance(applicationContext).getCoreAPI();
+
     }
 
     public Call<ArrayList<BookResponse>> getBooks(String searchQuery) {

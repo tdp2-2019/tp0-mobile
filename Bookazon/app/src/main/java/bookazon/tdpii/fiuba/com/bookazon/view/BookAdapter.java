@@ -47,7 +47,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
         imgSrcForCategory.put("Magic", R.drawable.cat_magic);
         imgSrcForCategory.put("War", R.drawable.cat_war);
         imgSrcForCategory.put("Wester", R.drawable.cat_western);
-        imgSrcForCategory.put("Religion", R.drawable.cat_religion);
     };
 
     private static Integer getDrawableCategoryOrDefault(String category){

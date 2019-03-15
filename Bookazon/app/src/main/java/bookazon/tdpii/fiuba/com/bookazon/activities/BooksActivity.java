@@ -40,7 +40,7 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books_activity);
 
-        bookService = new BookService();
+        bookService = new BookService(getApplicationContext());
 
 
         /*ImageButton newContactButton = (ImageButton) findViewById(R.id.btn_contact);
