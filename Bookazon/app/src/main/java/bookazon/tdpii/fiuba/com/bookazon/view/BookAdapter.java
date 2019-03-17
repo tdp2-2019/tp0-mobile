@@ -2,12 +2,15 @@ package bookazon.tdpii.fiuba.com.bookazon.view;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +29,8 @@ import bookazon.tdpii.fiuba.com.bookazon.model.Book;
 
 
 public class BookAdapter extends ArrayAdapter<Book> {
+
+    private Context context;
 
     private static Map<String, Integer > imgSrcForCategory;
     static{
@@ -57,6 +62,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
     public BookAdapter(Context context, ArrayList<Book> books) {
         super(context, 0, books);
+        this.context = context;
     }
 
     @Override
@@ -96,20 +102,54 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         descriptionView.setText(book.description);
 
-        ImageView downloadImageViewEPUB = (ImageView) convertView.findViewById(R.id.downloadEPUB);
+        final ImageView downloadImageViewEPUB = (ImageView) convertView.findViewById(R.id.downloadEPUB);
         if(!book.epub){
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
             downloadImageViewEPUB.setColorFilter(filter);
+        } else {
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(10);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            downloadImageViewEPUB.setColorFilter(filter);
+            if(!book.downloadingLinkEPUB.equals("LINK_HOLDER")) {
+                downloadImageViewEPUB.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!book.downloadingLinkEPUB.equals("LINK_HOLDER")) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.downloadingLinkEPUB));
+                            downloadImageViewEPUB.getContext().startActivity(browserIntent);
+                        }
+                    }
+                });
+            }
         }
 
-        ImageView downloadImageViewPDF = (ImageView) convertView.findViewById(R.id.downloadPDF);
+
+        final ImageView downloadImageViewPDF = (ImageView) convertView.findViewById(R.id.downloadPDF);
         if(!book.pdf){
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
             downloadImageViewPDF.setColorFilter(filter);
+        } else {
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(10);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            downloadImageViewPDF.setColorFilter(filter);
+            if(!book.downloadingLinkPDF.equals("LINK_HOLDER")) {
+                downloadImageViewPDF.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!book.downloadingLinkPDF.equals("LINK_HOLDER")) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.downloadingLinkPDF));
+                            downloadImageViewPDF.getContext().startActivity(browserIntent);
+                        }
+                    }
+                });
+
+            }
         }
 
 
