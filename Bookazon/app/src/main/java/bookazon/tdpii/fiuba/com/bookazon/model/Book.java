@@ -12,7 +12,8 @@ public class Book implements Serializable {
     public List<String> labels;
     public String description;
     public String coverLink;
-    public String downloadingLink;
+    public String downloadingLinkEPUB;
+    public String downloadingLinkPDF;
     public Boolean epub;
     public Boolean pdf;
 

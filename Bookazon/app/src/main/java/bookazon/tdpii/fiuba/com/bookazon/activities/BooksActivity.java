@@ -1,6 +1,7 @@
 package bookazon.tdpii.fiuba.com.bookazon.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -126,7 +127,8 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
             book.categories = bookResponse.categories != null ? bookResponse.categories : Arrays.asList("PlaceHolderCATE");
             book.coverLink = bookResponse.imageLinks != null ? bookResponse.imageLinks.thumbnail != null ? bookResponse.imageLinks.smallThumbnail : null : "PLACEHOLDERLINK";
             book.description = bookResponse.description != null ? bookResponse.description : "DEWSCPLACE";
-            book.downloadingLink = bookResponse.epub.tokenLinkURL != null ? bookResponse.epub.tokenLinkURL : "LINK HOLDER";
+            book.downloadingLinkEPUB = bookResponse.epub.tokenLinkURL != null ? bookResponse.epub.tokenLinkURL : "LINK HOLDER";
+            book.downloadingLinkPDF = bookResponse.pdf.tokenLinkURL != null ? bookResponse.pdf.tokenLinkURL : "LINK HOLDER";
             book.id = bookResponse.id != null ? bookResponse.id : "weewHOLDERID";
             book.labels = bookResponse.labels != null ? bookResponse.labels : Arrays.asList("LABLEHOLDER");
             book.title = bookResponse.title != null ? bookResponse.title : "TITLEHODLER";
@@ -224,4 +226,37 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
         });
     }*/
 
+    public void OpenDownloadBookPDF(View view){
+        final ListView bookList = (ListView) findViewById(R.id.list_of_books);
+        BookAdapter bookAdapter = new BookAdapter(this, bookArray);
+        bookList.setAdapter(bookAdapter);
+        bookList.setSelection(this.bookArray.size());
+        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+
+                final Book book = bookArray.get(position);
+                System.out.print(book.downloadingLinkPDF);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.downloadingLinkPDF));
+                startActivity(browserIntent);
+            }
+         });
+    }
+
+    public void OpenDownloadBookEPUB(View view){
+        final ListView bookList = (ListView) findViewById(R.id.list_of_books);
+        BookAdapter bookAdapter = new BookAdapter(this, bookArray);
+        bookList.setAdapter(bookAdapter);
+        bookList.setSelection(this.bookArray.size());
+        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+
+                final Book book = bookArray.get(position);
+                System.out.print(book.downloadingLinkEPUB);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.downloadingLinkEPUB));
+                startActivity(browserIntent);
+            }
+        });
+    }
 }

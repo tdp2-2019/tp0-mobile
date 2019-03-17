@@ -93,14 +93,23 @@ public class BookAdapter extends ArrayAdapter<Book> {
         labelsView.setText(book.getLabels());
 
         TextView descriptionView = (TextView) convertView.findViewById(R.id.description);
+
         descriptionView.setText(book.description);
 
-        ImageView downloadImageView = (ImageView) convertView.findViewById(R.id.download);
-        if(!book.pdf && !book.epub){
+        ImageView downloadImageViewEPUB = (ImageView) convertView.findViewById(R.id.downloadEPUB);
+        if(!book.epub){
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
-            downloadImageView.setColorFilter(filter);
+            downloadImageViewEPUB.setColorFilter(filter);
+        }
+
+        ImageView downloadImageViewPDF = (ImageView) convertView.findViewById(R.id.downloadPDF);
+        if(!book.pdf){
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            downloadImageViewPDF.setColorFilter(filter);
         }
 
 
