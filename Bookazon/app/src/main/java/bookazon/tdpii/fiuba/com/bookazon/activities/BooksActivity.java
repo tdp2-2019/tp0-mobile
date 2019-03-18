@@ -77,10 +77,10 @@ public class BooksActivity extends AppCompatActivity implements BookClient {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-
                 final Book book = bookArray.get(position);
-
-                System.out.print(book.authors);
+                Intent bookActivity = new Intent(getApplicationContext(), BookActivity.class);
+                bookActivity.putExtra(BookActivity.BOOK_KEY, book);
+                startActivity(bookActivity);
             }
         });
 
