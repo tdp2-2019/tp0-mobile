@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
+    android:layout_height="300dp"
     android:baselineAligned="false"
     tools:layout_editor_absoluteY="81dp">
 
@@ -12,7 +12,7 @@
         android:id="@+id/thumbnail"
         android:layout_width="150dp"
         android:layout_height="173dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="44dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:scaleType="centerCrop"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.452" />
 
     <TextView
         android:id="@+id/author"
@@ -64,14 +64,17 @@
         android:layout_marginRight="92dp"
         app:layout_constraintBottom_toTopOf="@+id/labels"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/labels"
         android:layout_width="126dp"
-        android:layout_height="31dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
+        android:linksClickable="false"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/download"
+        app:layout_constraintBottom_toTopOf="@+id/downloadEPUB"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -79,20 +82,35 @@
         android:layout_width="181dp"
         android:layout_height="33dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/download" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/download"
+        android:id="@+id/downloadEPUB"
         android:layout_width="65dp"
         android:layout_height="58dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/download_icon" />
+        app:srcCompat="@drawable/epub_download"/>
+
+    <ImageView
+        android:id="@+id/downloadPDF"
+        android:layout_width="65dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/downloadEPUB"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/labels"
+        app:srcCompat="@drawable/pdf_download" />
 </android.support.constraint.ConstraintLayout>
