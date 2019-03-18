@@ -18,7 +18,7 @@ import bookazon.tdpii.fiuba.com.bookazon.R;
 import bookazon.tdpii.fiuba.com.bookazon.model.Book;
 import bookazon.tdpii.fiuba.com.bookazon.services.books.BookService;
 
-class BookActivity extends AppCompatActivity {
+public class BookActivity extends AppCompatActivity {
 
     public final static String BOOK_KEY = "book_key";
 
